@@ -3,12 +3,12 @@ import { GameContext } from "@/context/GameContext";
 import { generateGrid } from "@/libs/grid.lib";
 
 export const useGameDraw = () => {
-  const { grid, setGrid, gridLength, setGridLength, setGameStarted } =
+  const { grid, setGrid, gridLength, setGridLength, setGameStarted, loading } =
     useContext(GameContext);
 
   useEffect(() => {
     // Generate grid the first run
-    if (grid.length === 0) {
+    if (grid.length === 0 && gridLength !== 0) {
       setGrid(generateGrid(gridLength));
     }
   }, [grid, gridLength, setGrid]);
@@ -24,6 +24,7 @@ export const useGameDraw = () => {
   };
 
   return {
+    loading,
     grid,
     gridLength,
     setGridLength,

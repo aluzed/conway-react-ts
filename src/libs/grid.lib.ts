@@ -4,6 +4,6 @@ export const generateGrid = (length: number) => {
 
 export const generateRandomGrid = (length: number) => {
   return Array.from({ length }, () =>
-    Array.from({ length }, () => (Math.random() > 0.5 ? 1 : 0))
+    Array.from({ length }, () => (Math.random() > 0.8 ? 1 : 0))
   );
 };

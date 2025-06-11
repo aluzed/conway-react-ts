@@ -1,7 +1,7 @@
 import { GameContext } from "@/context/GameContext";
 import { runSimulation } from "@/libs/gameLogic";
-import { generateGrid } from "@/libs/grid.lib";
-import { useContext, useEffect } from "react";
+import { generateGrid, generateRandomGrid } from "@/libs/grid.lib";
+import { startTransition, useContext, useEffect } from "react";
 
 export const useGameActions = () => {
   const {
@@ -13,6 +13,7 @@ export const useGameActions = () => {
     setGridLength,
     speedCoeff,
     setSpeedCoeff,
+    setLoading,
   } = useContext(GameContext);
 
   const resetGame = () => {
@@ -25,8 +26,17 @@ export const useGameActions = () => {
   };
 
   const setNewLength = (newGridLength: number) => {
-    setGridLength(newGridLength);
-    setGrid(generateGrid(newGridLength));
+    setLoading(true);
+    startTransition(() => {
+      setGridLength(newGridLength);
+      setGrid(generateGrid(newGridLength));
+      setLoading(false);
+    });
+  };
+
+  const randomizeGrid = () => {
+    setGameStarted(false);
+    setGrid(generateRandomGrid(gridLength));
   };
 
   useEffect(() => {
@@ -51,5 +61,6 @@ export const useGameActions = () => {
     toggleGame,
     setSpeedCoeff,
     setNewLength,
+    randomizeGrid,
   };
 };

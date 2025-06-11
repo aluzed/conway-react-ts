@@ -1,8 +1,8 @@
 ## Time-Tracking
 
-- Logic part: 1H
+- Logic part: 1H~1H30
 - UI part: 1H~1H30
-- Optimization:
+- Optimization: 1H (handle freezes, optimize UX)
 
 ## To run
 

@@ -1,7 +1,8 @@
 import { useGameActions } from "@/hooks/useGameActions";
 import { AiOutlineReload } from "react-icons/ai";
 import { IoMdPlay } from "react-icons/io";
-import { IoPauseOutline } from "react-icons/io5";
+import { IoPauseOutline, IoShuffle } from "react-icons/io5";
+import { Slider } from "./Slider";
 
 export const GameControl = () => {
   const {
@@ -12,6 +13,7 @@ export const GameControl = () => {
     setNewLength,
     speedCoeff,
     setSpeedCoeff,
+    randomizeGrid,
   } = useGameActions();
 
   return (
@@ -37,27 +39,35 @@ export const GameControl = () => {
       </div>
 
       <div className="control-action">
-        <input
-          type="range"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setSpeedCoeff(Number(e.target.value));
+        <button
+          className="control-button"
+          title="Click to randomize"
+          onClick={randomizeGrid}
+        >
+          <IoShuffle />
+        </button>
+      </div>
+
+      <div className="control-action">
+        <Slider
+          onChange={(newSpeed) => {
+            setSpeedCoeff(newSpeed);
           }}
           min={1}
           max={10}
-          value={speedCoeff}
+          defaultValue={speedCoeff}
         />
         <span>Game speed: x{speedCoeff}</span>
       </div>
 
       <div className="control-action">
-        <input
-          type="range"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setNewLength(Number(e.target.value));
+        <Slider
+          onChange={(newGridLength) => {
+            setNewLength(newGridLength);
           }}
           min={3}
           max={1000}
-          value={gridLength}
+          defaultValue={gridLength}
         />
         <span>Grid: {gridLength} cells</span>
       </div>

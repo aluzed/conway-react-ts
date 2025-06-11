@@ -9,6 +9,8 @@ export type GameContextType = {
   setGrid: (grid: number[][]) => void;
   speedCoeff: number;
   setSpeedCoeff: (coeff: number) => void;
+  loading: boolean;
+  setLoading: (l: boolean) => void;
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -21,6 +23,8 @@ export const GameContext = createContext<GameContextType>({
   setGrid: () => {},
   speedCoeff: 1,
   setSpeedCoeff: () => {},
+  loading: false,
+  setLoading: () => {},
 });
 
 export const GameProvider = ({ children }: { children: React.ReactNode }) => {
@@ -28,6 +32,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const [gameStarted, setGameStarted] = useState(false);
   const [grid, setGrid] = useState<number[][]>([]);
   const [speedCoeff, setSpeedCoeff] = useState(1);
+  const [loading, setLoading] = useState<boolean>(false);
 
   return (
     <GameContext.Provider
@@ -40,6 +45,8 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
         setGrid,
         speedCoeff,
         setSpeedCoeff,
+        loading,
+        setLoading,
       }}
     >
       {children}
