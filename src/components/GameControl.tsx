@@ -69,7 +69,9 @@ export const GameControl = () => {
           max={1000}
           defaultValue={gridLength}
         />
-        <span>Grid: {gridLength} cells</span>
+        <span>
+          Grid: {gridLength}x{gridLength} cells
+        </span>
       </div>
     </div>
   );
