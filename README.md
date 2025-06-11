@@ -4,6 +4,8 @@
 - UI part: 1H~1H30
 - Optimization: 1H (handle freezes, optimize UX)
 
+Trade-offs: Savestate
+
 ## To run
 
 ```
