@@ -12,3 +12,9 @@ bun run dev
 
 # -> go to http://localhost:5173
 ```
+
+## Run tests
+
+```
+npx vitest
+```
