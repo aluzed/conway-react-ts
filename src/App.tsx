@@ -1,4 +1,3 @@
-import "./App.css";
 import { GameProvider } from "./context/GameContext";
 import { Grid } from "./components/Grid";
 import { GameControl } from "./components/GameControl";
