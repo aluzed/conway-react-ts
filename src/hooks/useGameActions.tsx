@@ -43,8 +43,24 @@ export const useGameActions = () => {
     let interval = null;
 
     if (gameStarted) {
-      interval = setInterval(() => {
-        setGrid(runSimulation(grid));
+      interval = setInterval(async () => {
+        const splitted: Array<number[][]> = Array.from(
+          {
+            length: Math.ceil(grid.length / 1000),
+          },
+          (_, i) => grid.slice(i * 1000, i * 1000 + 1000)
+        );
+
+        const newGrids: Array<number[][]> = await Promise.all(
+          splitted.map(
+            (chunk) =>
+              new Promise<number[][]>((resolve) =>
+                resolve(runSimulation(chunk))
+              )
+          )
+        );
+
+        setGrid(newGrids.flat());
       }, Math.round(1000 / speedCoeff));
     }
 
